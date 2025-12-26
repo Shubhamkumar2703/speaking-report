@@ -1,16 +1,104 @@
-# React + Vite
+# Student Speaking Assessment Report
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a simple **frontend prototype** of a **student speaking assessment report page**, similar to platforms such as SpeechAce or IELTS score reports.
 
-Currently, two official plugins are available:
+The purpose of this project is to demonstrate:
+- Frontend UI development skills
+- Basic data handling
+- Logical implementation of score-based feedback
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Only the **top part of the report** is implemented, including **Summary of Scores** and **Descriptive Feedback**, as required in the assignment.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Live Demo
 
-## Expanding the ESLint configuration
+https://heartfelt-pastelito-aa4f1d.netlify.app/
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- React.js
+- HTML, CSS, JavaScript
+- Chart.js (via react-chartjs-2)
+- Vite (build tool)
+
+No backend or database is used. All data is handled on the frontend.
+
+---
+
+## How to Run the Project Locally
+
+1. Clone the repository:
+```bash
+git clone https://github.com/shubhamkumar2703/speaking-report.git
+cd speaking-report
+```
+2. Install dependencies:
+ ```bash
+   npm install
+```
+3.Start the development server:
+```
+npm run dev
+```
+The application will run on:
+```
+http://localhost:5173
+```
+Where the Scores Are Stored
+
+All speaking assessment scores are stored in a simple in-memory JavaScript object.
+
+File location:
+```
+src/data.js
+```
+Example:
+```
+export const reportData = {
+  studentName: "Shubham Kumar",
+  overallScore: 8,
+  skills: {
+    Pronunciation: 8.5,
+    Fluency: 8,
+    Vocabulary: 7.5,
+    Grammar: 7
+  }
+};
+```
+If any score value is changed in this file, the UI, chart, and feedback update automatically.
+
+How Feedback Logic Works
+
+Descriptive feedback is generated using basic conditional logic based on score ranges.
+
+File location:
+```
+src/components/Feedback.jsx
+
+````
+Logic used: 
+```
+if (score >= 8) return "Excellent performance with strong control.";
+  if (score >= 6) return "Good performance with minor inaccuracies.";
+  return "Needs improvement.";
+```
+This logic is applied to:
+
+The overall speaking score
+
+Each individual skill score
+
+As a result, feedback text changes dynamically when score values are modified.
+
+Graphical Representation
+
+Skill-wise performance is visualized using a Radar Chart created with Chart.js.
+The chart displays all speaking skills on a scale of 0 to 10, matching standard speaking assessment criteria.
+
+
+Author
+Shubham Kumar
+
